@@ -1,0 +1,6 @@
+# need to install module
+#项目引入的第三方库，可使用pip install -r requirements.txt下载第三方库
+bs4
+pymongo
+requests
+json

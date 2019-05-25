@@ -24,6 +24,7 @@ def connect_st1_db():
                            charset='utf8')
 
 
+
 class User:
     user_id = ''
     user_name = ''

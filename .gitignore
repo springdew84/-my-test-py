@@ -1,0 +1,13 @@
+venv
+.idea
+*.py[cod]
+*.so
+*.egg
+*.egg-info
+dist
+build
+target
+.classpath
+.project
+.settings
+*.iml

@@ -10,17 +10,17 @@ def connect_prod_db():
     return pymysql.connect(host='184.169.240.38',
                            port=3306,
                            user='cdoffice',
-                           password='bookface06',
-                           database='dm_ucenter',
+                           password='dbookface06',
+                           database='ddm_ucenter',
                            charset='utf8')
 
 
 def connect_st1_db():
     return pymysql.connect(host='47.88.59.171',
                            port=3306,
-                           user='dm',
-                           password='bookface06',
-                           database='discover',
+                           user='ddm',
+                           password='dbookface06',
+                           database='ddiscover',
                            charset='utf8')
 
 

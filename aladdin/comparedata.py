@@ -35,6 +35,6 @@ for i in range(len(dirList)-1):
                     break
 
             if not screen_exist:
-                print("screen:" + row1Array[0] + " not exist, file:" + file2Path)
+                print("screen:" + row1Array[0] + " is not exist, file:" + file2Path)
 
 

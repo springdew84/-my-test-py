@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import jieba
-import difflib
-
 class Row:
     rownum = 0  #行号
     data = ''  #行数据

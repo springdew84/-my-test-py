@@ -11,3 +11,5 @@ target
 .project
 .settings
 *.iml
+*.txt
+*.json

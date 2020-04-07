@@ -35,7 +35,7 @@ class CompaleRow:
 
 
 #读取文本文件
-file = open("data.txt")
+file = open("r.txt")
 file_local = open("local.txt")
 file_voucher = open("user.txt")
 index = 1

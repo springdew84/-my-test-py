@@ -97,7 +97,7 @@ for cityName in citySet:
                         data[j].hasFamily = 1
 
 #写新的文件
-with open('data.txt', 'w') as f:
+with open('r.txt', 'w') as f:
     for i in range(count):
         f.write(data[i].data + "	" + str(data[i].groupId) + "	" + str(data[i].hasFamily) + "	" + str(data[i].ratio))
         f.write('\n')

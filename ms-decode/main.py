@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import base64
 import json
+import os
 
 
 class Config:
@@ -80,19 +81,24 @@ class ServerInfo:
 
 serverArray = []
 config = Config()
+sourceFile = '/Users/dealmoon/Downloads/1.txt'
+confFile = '/Users/dealmoon/Downloads/conf.json'
 
 if __name__ == '__main__':
-    filePath = "r01.txt"
-    file1 = open(filePath, "r")
+
+    file1 = open(sourceFile, "r")
     i = 0
     for row in file1:
-        decodeStr = row.replace("ssr://", "").replace("ss://", "")
+        if row.find("ssr") or row.find("ss") < 0:
+            continue
 
+        decodeStr = row.replace("ssr://", "").replace("ss://", "")
         decodeStr = decodeStr.replace("_", "+").replace("_", "/")
 
         # 可选altchars必须是长度为2的对象或ASCII字符串之类的字节它指定使用的替代字母表，而不是“+”和“/”字符。
         # 原因分析:传入的参数的长度不是2的对象，在参数最后加上等于号"="(一个或者两个)
-        decodeStr = decodeStr + "=="
+        if decodeStr.find("=") < 0:
+            decodeStr = decodeStr + "=="
         # print(str(i) + "密文：" + decodeStr)
 
         originStr = base64.b64decode(decodeStr).decode("UTF-8")
@@ -105,7 +111,7 @@ if __name__ == '__main__':
         elif originStr.find("/>") >= 0:
             hostInfoArray = originStr.split("/>")
         else:
-            raise Exception(print('unkonwn spliter!!!'))
+            raise Exception('unkonwn spliter!!!')
 
         print(i)
         # print(hostInfoArray[0])
@@ -114,6 +120,9 @@ if __name__ == '__main__':
 
         # pwdOrigin = hostInfo[5] + '=='
         pwdOrigin = hostInfo[5]
+
+        if pwdOrigin.find("=") < 0:
+            pwdOrigin = pwdOrigin + "=="
 
         pwdOrigin = pwdOrigin.replace("_", "+").replace("_", "/")
 
@@ -125,12 +134,24 @@ if __name__ == '__main__':
 
         i = i + 1
 
+    file1.close()
+
     config.__setattr__('configs', serverArray)
     json_str = json.dumps(config, default=lambda o: o.__dict__, sort_keys=False, indent=4)
     json_str = json_str.replace("global_s", "global")
     print(json_str)
 
-    config_file = open("conf.json", "w")
+    if os.path.exists(confFile):  # 如果文件存在
+        # 删除文件，可使用以下两种方法。
+        os.remove(confFile)
+        print("exist file, delete!")
+
+    config_file = open(confFile, "w")
     config_file.write(json_str)
     config_file.close()
+
+    os.remove(sourceFile)
+    print("decode success!!, file create:" + confFile)
+
+
 
